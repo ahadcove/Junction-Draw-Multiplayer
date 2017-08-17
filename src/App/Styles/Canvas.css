@@ -12,9 +12,41 @@
     justify-content: space-between;
 }
 
+.tool-box{
+
+}
+
+.color-button{
+    border:none;
+    width:25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.color-button:focus, .color-button:active{
+    outline:none;
+}
+
+.color-button:hover{
+    width: 30px;
+    height: 30px;
+}
+
+.color-button:active{
+    width:20px;
+    height: 20px;
+}
+
+.size-contain{
+
+}
+
+.size-value{
+    text-align: center;
+}
+
 .canvas-contain{
     position:relative;
-    margin-top:40px;
     border: solid 2px black;
     /* width:80vw;
     height:70vh; */
