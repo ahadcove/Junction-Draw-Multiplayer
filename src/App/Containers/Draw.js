@@ -1,4 +1,6 @@
 import React,{Component} from 'react';
+// import { withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import "../Styles/Canvas.css";
 import io from 'socket.io-client';
 
@@ -10,7 +12,7 @@ class Draw extends Component{
     constructor(){
         super();
         this.state = {
-            name:'',
+            name:null,
             users:[],
             color: 'black',
             drawing:false,
@@ -21,24 +23,30 @@ class Draw extends Component{
     }
 
     componentWillMount(){
-        console.log("Socket", socket.id);
-        console.log(this.props.location);
-        this.setState({name: this.props.location.state.name});
+        if(this.props.location.state){
+            console.log(this.props.location);
+            this.setState({name: this.props.location.state.name});
+        } else {
+            this.props.history.push('/home');
+        }
     }
-
+    
     componentDidMount(){
-        this.setUpCanvas();
-        this.connection();
+        if(this.props.location.state){
+            console.log(this.props.location);
+            this.setState({name: this.props.location.state.name});
+            this.setUpCanvas();
+            this.connection();
+        }
     }
     
     componentWillUnmount() {  
-        socket.emit('leave room', {
-          room: this.props.challenge.id
-        })
+        // if(this.state.name)
+            // socket.emit('leave room', {//   room: this.props.challenge.id})
+        if( typeof window !== 'undefined' )
+            window.removeEventListener('resize', this.onResize)  
     }
 
-    
-    
     setUpCanvas = () => {
         // let width = window.innerWidth;
         // let height = window.innerHeight;
@@ -54,10 +62,16 @@ class Draw extends Component{
         console.log("id", socket);     
         socket.emit('connected', {name: this.state.name});        
         
+        socket.on("user connected", (users)=>{
+            console.log("New User Connected");
+            this.setState({users});
+        });
+
         socket.on("get canvas", (canvas)=>{
             console.log("Canvas", canvas);
-            for(let i = 0; i < canvas.length; i++){
-                this.drawLine(this.state.context, canvas[i].x1, canvas[i].y1, canvas[i].x2, canvas[i].y2, canvas[i].color);
+            this.setState({users: canvas.users});
+            for(let i = 0; i < canvas.board.length; i++){
+                this.drawLine(this.state.context, canvas.board[i].x1, canvas.board[i].y1, canvas.board[i].x2, canvas.board[i].y2, canvas.board[i].color);
             }
         });
 
@@ -73,6 +87,26 @@ class Draw extends Component{
             // this.setState({context:this.state.context.clearRect(0, 0, this.state.width, this.state.height) });
         });
 
+        socket.on('user left', (data) =>{
+            console.log("User left", data);
+            this.setState({users:data});
+        })
+
+        socket.on("resized", (board)=>{
+            for(let i = 0; i < board.length; i++){
+                this.drawLine(this.state.context, board[i].x1, board[i].y1, board[i].x2, board[i].y2, board[i].color);
+            }
+        })
+        
+        window.addEventListener('resize', ()=>{
+            console.log("Resizing");
+            let width = this.canvasContain.offsetWidth;
+            let height = this.canvasContain.offsetHeight;
+            this.setState({width, height});
+            this.canvas.width = width;
+            this.canvas.height = height;
+            socket.emit("resized");
+        }, false)        
     }
 
     selectColor = (color) => {
@@ -133,22 +167,35 @@ class Draw extends Component{
     render(){
         return(
             <div className={"draw-container"}>
-                {this.state.name}
-                <button onClick={this.eraseBoard} >Clean Board</button>
-                <div>
-                    Colors:
-                    <button onClick={()=>this.selectColor("red")}>Red</button>
-                    <button onClick={()=>this.selectColor("blue")}>Blue</button>
-                    <button onClick={()=>this.selectColor("green")}>Green</button>
-                </div>
-                <div className={"canvas-contain"} ref={(node)=>{this.canvasContain = node}}>
-                    <canvas id={"canvas"} ref={(node)=>{this.canvas = node}} 
-                        onMouseDown={this.startDraw} onMouseUp={this.endDraw} 
-                        onMouseMove={this.drawing}
-                    />
+                {/* {this.state.name} */}
+                <div className={"canvas-row"}>
+                    <div className={"tool-box"}>
+                        <button onClick={this.eraseBoard} >Clean Board</button>
+                        <div>
+                            <h3>Colors</h3>
+                            <button onClick={()=>this.selectColor("red")}>Red</button>
+                            <button onClick={()=>this.selectColor("blue")}>Blue</button>
+                            <button onClick={()=>this.selectColor("green")}>Green</button>
+                        </div>
+                    </div>
+                    <div className={"canvas-contain"} ref={(node)=>{this.canvasContain = node}}>
+                        <canvas id={"canvas"} ref={(node)=>{this.canvas = node}} 
+                            onMouseDown={this.startDraw} onMouseUp={this.endDraw} 
+                            onMouseMove={this.drawing}
+                        />
+                    </div>
+                    <div>
+                        <h5>Users</h5>
+                        <div>
+                            {this.state.users.map(user=>{
+                                return <div key={user.id}>{user.name}</div>
+                            })}
+                        </div>
+                    </div>
                 </div>
             </div>
         )
     }
 }
-export default Draw;
+
+export default withRouter(Draw);

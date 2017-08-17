@@ -6,12 +6,20 @@
     padding: 20px 0;
 }
 
+.canvas-row{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .canvas-contain{
     position:relative;
     margin-top:40px;
     border: solid 2px black;
-    width:80vw;
-    height:70vh;
+    /* width:80vw;
+    height:70vh; */
+    width:950px;
+    height:500px;
     /* width:200px; 
     height:200px; */
     /* opacity:0; */
@@ -23,3 +31,9 @@
     padding:0;
 	display: block;
 }
+
+@media screen and (max-width: 600px) {
+    .canvas-row{
+        flex-direction:column;
+    }
+ }

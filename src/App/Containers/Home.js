@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import '../Styles/s_home.css';
 
 class Home extends Component{
     constructor(){
@@ -35,11 +36,18 @@ class Home extends Component{
 
     render(){
         return(
-            <div>
-                Welcome To Junct Draw
-                <div>Enter Username and get drawing</div>
-                <input name="name" ref={(input) => { this.nameInput = input; }} type="text" maxLength="25" value={this.state.name} onChange={this._handleInputChange} onKeyPress={this._handleKeyPress} placeholder={"name"} />
-                <button onClick={this.enter} disabled={!this.state.name}>Enter</button>
+            <div className={'home-contain'}>
+                <div className={'login-box'}>
+                    {/* <div className={"glass"} /> */}
+                    <div className={'login-header'}>
+                        <div className={'title'}>Junction Draw</div>
+                        <div className={"sub-title"}>Enter Username and get drawing</div>
+                    </div>
+                    <div className={'input-contain'}>
+                        <input className={"name"} name="name" autoFocus ref={(input) => { this.nameInput = input; }} type="text" maxLength="15" value={this.state.name} onChange={this._handleInputChange} onKeyPress={this._handleKeyPress} placeholder={"name"} />
+                        <button className={"submit"} onClick={this.enter} style={{color:(!this.state.name && "gray")}} disabled={!this.state.name}>Enter</button>
+                    </div>
+                </div>
             </div>
         )
     }
