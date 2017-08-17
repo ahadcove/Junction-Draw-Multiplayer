@@ -1,0 +1,25 @@
+.draw-container{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px 0;
+}
+
+.canvas-contain{
+    position:relative;
+    margin-top:40px;
+    border: solid 2px black;
+    width:80vw;
+    height:70vh;
+    /* width:200px; 
+    height:200px; */
+    /* opacity:0; */
+    /* background:blue; */
+}
+
+#canvas {
+    margin:0;
+    padding:0;
+	display: block;
+}
