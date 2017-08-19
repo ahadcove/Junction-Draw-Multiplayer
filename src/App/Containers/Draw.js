@@ -4,9 +4,11 @@ import { withRouter } from 'react-router-dom'
 import "../Styles/Canvas.css";
 import io from 'socket.io-client';
 
+const PORT = process.env.PORT || 9000;
+
 // const socket = io();
 // const socket = io.connect('http://localhost:9000');
-const socket = io.connect('https://localhost:'+process.env.PORT || 9000);
+const socket = io.connect('https://localhost:'+PORT);
 // const socket = io.connect( "http://localhost:"+ process.env.PORT || 9000);
 
 class Draw extends Component{

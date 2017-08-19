@@ -12,10 +12,13 @@ const app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+const PORT = process.env.PORT || 9000;
+
+
 // Middleware
 // app.use(cors());
 // app.use(cors({credentials: true, origin: 'https://localhost:3000'}));
-http.listen(process.env.PORT || 9000, "127.0.0.1");
+http.listen(PORT, "127.0.0.1");
 // http.listen(8080, "127.0.0.1");
 
 // Body-Parser
