@@ -1,0 +1,5 @@
+{
+    "name": "Junction Draw",
+    "description": "React Canvas app with Socket.io in the mix to make a real time paint app",
+    "keywords": ["node", "express", "socket", "draw"]
+}
