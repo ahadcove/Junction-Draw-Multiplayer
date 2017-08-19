@@ -98,12 +98,12 @@ class Draw extends Component{
         
         window.addEventListener('resize', ()=>{
             console.log("Resizing");
-            let width = this.canvasContain.offsetWidth;
-            let height = this.canvasContain.offsetHeight;
-            this.setState({width, height});
-            this.canvas.width = width;
-            this.canvas.height = height;
-            socket.emit("resized");
+            // let width = this.canvasContain.offsetWidth;
+            // let height = this.canvasContain.offsetHeight;
+            // this.setState({width, height});
+            // this.canvas.width = width;
+            // this.canvas.height = height;
+            // socket.emit("resized");
         }, false)        
     }
 
@@ -172,6 +172,7 @@ class Draw extends Component{
     render(){
         return(
             <div className={"draw-container"}>
+                <div className={"main-title"}>Junction Draw</div>
                 {/* {this.state.name} */}
                 <div className={"canvas-row"}>
                     <div className={"tool-box"}>
@@ -198,7 +199,7 @@ class Draw extends Component{
                         />
                     </div>
                     <div>
-                        <h5>Users</h5>
+                        <h3>Users</h3>
                         <div>
                             {this.state.users.map(user=>{
                                 return <div key={user.id}>{user.name}</div>

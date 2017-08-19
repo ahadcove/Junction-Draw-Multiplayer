@@ -1,9 +1,17 @@
 .draw-container{
+    min-height:100vh;
     display: flex;
     align-items:center;
-    justify-content: center;
+    /* justify-content: center; */
     flex-direction: column;
-    padding: 20px 0;
+    padding: 20px 20px;
+}
+
+.main-title{
+    font-size:2rem;
+    flex-grow: .2;
+    /* margin:auto; */
+    /* margin-bottom:20px; */
 }
 
 .canvas-row{
@@ -28,13 +36,13 @@
 }
 
 .color-button:hover{
-    width: 30px;
-    height: 30px;
+    background-color: white;
+    border: 1px solid black;
 }
 
 .color-button:active{
-    width:20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
 }
 
 .size-contain{
