@@ -29,6 +29,7 @@
     "server": "nodemon bin/dev",
     "server-prod": "node server",
     "build": "react-scripts build",
+    "heroku": "npm run build && quickpush 'push'",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
