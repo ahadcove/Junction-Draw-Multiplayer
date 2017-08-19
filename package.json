@@ -20,9 +20,9 @@
     "socket.io-client": "^2.0.3"
   },
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run react\"",
+    "start": "nodemon bin/dev",
+    "conc": "concurrently \"npm run server\" \"npm run react\"",
     "react": "react-scripts start",
-    "server": "nodemon bin/dev",
     "server-prod": "node server",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
