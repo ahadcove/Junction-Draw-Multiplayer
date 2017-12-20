@@ -28,8 +28,8 @@
     "start": "concurrently \"npm run server\" \"npm run react\"",
     "react": "react-scripts start",
     "server": "nodemon bin/dev",
-    "server-prod": "node server",
     "build": "react-scripts build",
+    "server-prod": "node server",
     "heroku": "npm run build && git add . && git commit -m 'Push' && git push",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
