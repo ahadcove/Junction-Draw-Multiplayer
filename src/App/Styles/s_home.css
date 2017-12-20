@@ -10,7 +10,6 @@
 
 .login-box{
     position:relative;
-    /* margin-top:60px; */
     height:60vh;
     padding: 30px;
     background-color: rgba(255, 255, 255, .1);
@@ -26,8 +25,6 @@
     position:absolute;
     width:100%;
     height: 100%;
-    /* background-color: rgba(255, 255, 255, .3); */
-    /* background:  */
 }
 
 .login-header{
@@ -45,18 +42,14 @@
 }
 
 .input-contain{
-    /* width:80%; */
     flex-grow: 1;
-    /* height: 20vh; */
     display: flex;
     flex-direction: column;
-    /* justify-content: space-around; */
 }
 
 .name{
     text-align: center;
     line-height: 80px;
-    /* width:80%; */
     width:200px;
     color:white;
     margin-bottom:20px;
@@ -64,7 +57,6 @@
     border:none;
     font-weight:700;
     font-size: 1.2rem;
-    /* display: block; */
 }
 
 .name:focus{
@@ -78,11 +70,9 @@
     color:white;
     background:none;
     border:none;
-    /* border:solid 1px white;     */
 }
 
 .submit:hover{
-    /* color:black; */
     background-color: rgba(255, 255, 255, .3);
 }
 

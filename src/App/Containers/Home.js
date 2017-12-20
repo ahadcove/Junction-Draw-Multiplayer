@@ -38,7 +38,6 @@ class Home extends Component{
         return(
             <div className={'home-contain'}>
                 <div className={'login-box'}>
-                    {/* <div className={"glass"} /> */}
                     <div className={'login-header'}>
                         <div className={'title'}>Junction Draw</div>
                         <div className={"sub-title"}>Enter Username and get drawing</div>
