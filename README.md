@@ -1,12 +1,9 @@
-<!-- ## Example: http://reacti-todo.surge.sh -->
-
 ## Junction Draw Guide
 
 * Clone Repository
 * npm install
-* npm start
-* Goto localhost:4545
-* signup as a new user 
+* npm run dev
+* Goto localhost:3000
 * Enter a name
 * Have fun
 * Invite some friends
