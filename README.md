@@ -5,7 +5,8 @@
 * Clone Repository
 * npm install
 * npm start
-* signup as a new user
+* Goto localhost:4545
+* signup as a new user 
 * Enter a name
 * Have fun
 * Invite some friends
