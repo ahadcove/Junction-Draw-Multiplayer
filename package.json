@@ -25,14 +25,16 @@
     "socket.io-client": "^2.0.4"
   },
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run react\"",
+    "start": "node server",
+    "dev": "concurrently \"npm run server\" \"npm run react\"",
     "react": "react-scripts start",
     "server": "nodemon bin/dev",
     "build": "react-scripts build",
     "server-prod": "node server",
     "heroku": "npm run build && git add . && git commit -m 'Push' && git push",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "pm2": "pm2 --name junction-draw start npm -- start"
   },
   "devDependencies": {
     "concurrently": "^3.5.1"
